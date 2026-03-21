@@ -2,28 +2,24 @@
    ELIAS KUULMANN — PORTFOLIO
    ============================================ */
 
+@font-face {
+  font-family: 'EliasHand';
+  src: url('./fonts/Myfont-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --- VARIABLES --- */
 :root {
-  /* 
-    HANDWRITING FONT: Currently using 'Caveat' from Google Fonts as placeholder.
-    To use Elias's actual handwriting font:
-    1. Convert his handwriting to a .woff2 font file (use calligraphr.com)
-    2. Replace the @font-face below and update --font-hand
-  */
-
-  /* 
-  @font-face {
-    font-family: 'EliasHand';
-    src: url('./fonts/elias-hand.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  */
-
-  --font-hand: Helvetica, Arial, sans-serif;
-  /* swap to 'EliasHand' when ready */
+  --font-hand: 'EliasHand';
   --font-body: 'DM Sans', sans-serif;
+
+  /* FONT SIZES — edit these to change sizes */
+  --size-nav-name: 4rem;
+  --size-nav-links: 4rem;
+  --size-works-heading: 3rem;
+  --size-work-link: 3rem;
 
   --color-bg: #ffffff;
   --color-text: #1a1a1a;
@@ -35,7 +31,16 @@
   --color-postcard-line: #c8bfb0;
   --color-stamp: #d4c5a9;
 
-  --nav-height: 64px;
+  --nav-height: 100px;
+  /* how tall the nav bar is */
+  --nav-padding: 4rem;
+  /* left/right space in nav */
+  --works-left: 4rem;
+  /* left indent of works list */
+  --works-gap: 0.05rem;
+  /* space between each work title */
+  --works-section-gap: 0.4rem;
+  /* space between Works/Video Works sections */
 }
 
 /* --- RESET --- */
@@ -83,7 +88,7 @@ ul {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2.5rem;
+  padding: 0 var(--nav-padding);
   background: var(--color-bg);
   z-index: 100;
   border-bottom: none;
@@ -91,7 +96,7 @@ ul {
 
 .nav__name {
   font-family: var(--font-hand);
-  font-size: 1.6rem;
+  font-size: var(--size-nav-name);
   font-weight: 700;
   letter-spacing: 0.01em;
   transition: opacity 0.2s;
@@ -106,7 +111,7 @@ ul {
   flex-wrap: nowrap;
   gap: 2rem;
   font-family: var(--font-hand);
-  font-size: 1.25rem;
+  font-size: var(--size-nav-links);
   white-space: nowrap;
 }
 
@@ -137,13 +142,13 @@ ul {
 .works-list {
   width: 300px;
   min-width: 300px;
-  padding: 2.5rem;
+  padding: 2.5rem 2.5rem 2.5rem var(--works-left);
   min-height: calc(100vh - var(--nav-height));
 }
 
 .works-list__heading {
   font-family: var(--font-hand);
-  font-size: 1.35rem;
+  font-size: var(--size-works-heading);
   font-weight: 600;
   margin-bottom: 0.6rem;
   padding-bottom: 0.3rem;
@@ -151,20 +156,20 @@ ul {
 }
 
 .works-list__items {
-  margin-bottom: 1rem;
+  margin-bottom: var(--works-section-gap);
 }
 
 .works-list__items li {
-  margin-bottom: 0.15rem;
+  margin-bottom: var(--works-gap);
 }
 
 .work-link {
   font-family: var(--font-hand);
-  font-size: 1.15rem;
+  font-size: var(--size-work-link);
   cursor: pointer;
   transition: opacity 0.2s;
   display: inline-block;
-  padding: 0.15rem 0;
+  padding: 0.05rem 0;
 }
 
 .work-link:hover,
@@ -358,8 +363,8 @@ ul {
 }
 
 .page__title {
-  font-family: var(--font-hand);
-  font-size: 2rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.7rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -378,7 +383,7 @@ ul {
 }
 
 .cv__section h2 {
-  font-family: var(--font-hand);
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.8rem;
@@ -431,8 +436,6 @@ ul {
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
-
-
 }
 
 .postcard__inner {
@@ -443,7 +446,6 @@ ul {
   background: var(--color-postcard);
 }
 
-/* Left side */
 .postcard__left {
   flex: 1;
   display: flex;
@@ -463,34 +465,24 @@ ul {
   margin-bottom: 0.5rem;
 }
 
-/* .postcard__stamp-text {
-  font-family: var(--font-hand);
-  font-size: 0.8rem;
-  color: var(--color-stamp);
-  letter-spacing: 0.1em;
-} */
-
 .postcard__fields-left {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Divider */
 .postcard__divider {
   width: 1.5px;
   background: var(--color-postcard-line);
   align-self: stretch;
 }
 
-/* Right side */
 .postcard__right {
   flex: 1.3;
   display: flex;
   flex-direction: column;
 }
 
-/* Fields */
 .postcard__field label {
   display: block;
   font-family: var(--font-hand);
@@ -522,7 +514,6 @@ ul {
 .postcard__field textarea {
   border-bottom: none;
   line-height: 1.75;
-  /* Lines matching the background */
   background-image:
     repeating-linear-gradient(0deg,
       transparent,
@@ -556,7 +547,6 @@ ul {
   opacity: 0.8;
 }
 
-/* Confirmation */
 .postcard-confirmation {
   display: flex;
   align-items: center;
@@ -570,10 +560,8 @@ ul {
   color: var(--color-text);
 }
 
-/* Decorative postcard lines (right side) */
 .postcard__lines {
   display: none;
-  /* hidden — using CSS background lines instead */
 }
 
 /* ============================================
@@ -585,15 +573,14 @@ ul {
   }
 
   .nav__name {
-    font-size: 1.3rem;
+    font-size: calc(var(--size-nav-name) * 0.7);
   }
 
   .nav__links {
     gap: 1.2rem;
-    font-size: 1.1rem;
+    font-size: calc(var(--size-nav-links) * 0.7);
   }
 
-  /* Home: stack sidebar above preview */
   .home {
     flex-direction: column;
   }
@@ -609,7 +596,6 @@ ul {
     padding: 1.5rem;
   }
 
-  /* Postcard: stack vertically */
   .postcard {
     padding: 1.5rem;
     max-width: 95vw;
@@ -645,7 +631,7 @@ ul {
 @media (max-width: 480px) {
   .nav__links {
     gap: 0.8rem;
-    font-size: 1rem;
+    font-size: calc(var(--size-nav-links) * 0.6);
   }
 }
 
@@ -692,7 +678,6 @@ ul {
   font-style: italic;
 }
 
-/* Photos container */
 .work-page__photos {
   display: flex;
   flex-direction: column;
@@ -700,7 +685,6 @@ ul {
   margin-bottom: 4rem;
 }
 
-/* Single image — auto width, centered */
 .work-page__image {
   text-align: center;
 }
@@ -712,12 +696,10 @@ ul {
   margin: 0 auto;
 }
 
-/* Full width horizontal image */
 .work-page__image--full img {
   width: 80%;
 }
 
-/* Portrait / vertical image — constrained width */
 .work-page__image--portrait {
   max-width: 500px;
   margin: 0 auto;
@@ -727,7 +709,6 @@ ul {
   width: 100%;
 }
 
-/* Series — images side by side */
 .work-page__series {
   display: flex;
   gap: 1rem;
@@ -745,7 +726,6 @@ ul {
   display: block;
 }
 
-/* Captions */
 .work-page__image figcaption,
 .work-page__series figcaption {
   font-family: var(--font-body);
@@ -755,7 +735,6 @@ ul {
   text-align: center;
 }
 
-/* Back link */
 .work-page__back {
   display: inline-block;
   font-family: var(--font-hand);
@@ -769,7 +748,6 @@ ul {
   opacity: 1;
 }
 
-/* Responsive work page */
 @media (max-width: 768px) {
   .work-page {
     padding: calc(var(--nav-height) + 2rem) 1.2rem 3rem;
