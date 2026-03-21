@@ -1,0 +1,789 @@
+/* ============================================
+   ELIAS KUULMANN — PORTFOLIO
+   ============================================ */
+
+/* --- VARIABLES --- */
+:root {
+  /* 
+    HANDWRITING FONT: Currently using 'Caveat' from Google Fonts as placeholder.
+    To use Elias's actual handwriting font:
+    1. Convert his handwriting to a .woff2 font file (use calligraphr.com)
+    2. Replace the @font-face below and update --font-hand
+  */
+
+  /* 
+  @font-face {
+    font-family: 'EliasHand';
+    src: url('./fonts/elias-hand.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  */
+
+  --font-hand: Helvetica, Arial, sans-serif;
+  /* swap to 'EliasHand' when ready */
+  --font-body: 'DM Sans', sans-serif;
+
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-light: #6b6560;
+  --color-accent: #1a1a1a;
+  --color-line: transparent;
+  --color-hover: #3a3530;
+  --color-postcard: #f0ebe2;
+  --color-postcard-line: #c8bfb0;
+  --color-stamp: #d4c5a9;
+
+  --nav-height: 64px;
+}
+
+/* --- RESET --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background: var(--color-bg);
+  z-index: 100;
+  border-bottom: none;
+}
+
+.nav__name {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+
+.nav__name:hover {
+  opacity: 0.6;
+}
+
+.nav__links {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+
+.nav__links a {
+  position: relative;
+  transition: opacity 0.2s;
+}
+
+.nav__links a:hover,
+.nav__links a.active {
+  opacity: 0.6;
+}
+
+.nav__links a.active::after {
+  display: none;
+}
+
+/* ============================================
+   HOME PAGE — WORKS
+   ============================================ */
+.home {
+  display: flex;
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+}
+
+/* Left sidebar */
+.works-list {
+  width: 300px;
+  min-width: 300px;
+  padding: 2.5rem;
+  min-height: calc(100vh - var(--nav-height));
+}
+
+.works-list__heading {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  display: inline-block;
+}
+
+.works-list__items {
+  margin-bottom: 1rem;
+}
+
+.works-list__items li {
+  margin-bottom: 0.15rem;
+}
+
+.work-link {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: inline-block;
+  padding: 0.15rem 0;
+}
+
+.work-link:hover,
+.work-link.active {
+  opacity: 0.55;
+}
+
+/* Right preview area — shows large image */
+.works-preview {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.works-preview__hint {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+}
+
+/* Large image display */
+.works-preview__display {
+  width: 100%;
+  height: calc(100vh - var(--nav-height) - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.works-preview__display img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+}
+
+/* Nav arrows within the preview */
+.preview-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--color-text);
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  padding: 0.5rem;
+}
+
+.preview-nav:hover {
+  opacity: 0.8;
+}
+
+.preview-nav--prev {
+  left: 0;
+}
+
+.preview-nav--next {
+  right: 0;
+}
+
+.works-preview__caption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.works-preview__counter {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  opacity: 0.6;
+  margin-top: 0.3rem;
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.92);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.lightbox__close:hover {
+  opacity: 1;
+}
+
+.lightbox__prev,
+.lightbox__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.lightbox__prev {
+  left: 1.5rem;
+}
+
+.lightbox__next {
+  right: 1.5rem;
+}
+
+.lightbox__prev:hover,
+.lightbox__next:hover {
+  opacity: 1;
+}
+
+.lightbox__content {
+  text-align: center;
+  max-width: 85vw;
+  max-height: 85vh;
+}
+
+.lightbox__img {
+  max-width: 85vw;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.lightbox__caption {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.lightbox__counter {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+/* ============================================
+   INNER PAGES (About, CV)
+   ============================================ */
+.page {
+  min-height: 100vh;
+  padding-top: calc(var(--nav-height) + 3rem);
+  padding-bottom: 4rem;
+}
+
+.page__content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.page__title {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* About */
+.artist-statement p {
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+/* CV */
+.cv__section {
+  margin-bottom: 2.5rem;
+}
+
+.cv__section h2 {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.3rem;
+  display: inline-block;
+}
+
+.cv__entry {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cv__year {
+  min-width: 90px;
+  color: var(--color-text-light);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   CONTACT — POSTCARD
+   ============================================ */
+.page--contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: calc(var(--nav-height) + 2rem);
+}
+
+.postcard-title {
+  font-family: var(--font-hand);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.postcard {
+  width: 100%;
+  max-width: 900px;
+  background: var(--color-postcard);
+  border-radius: 4px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+
+
+}
+
+.postcard__inner {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  background: var(--color-postcard);
+}
+
+/* Left side */
+.postcard__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.postcard__stamp {
+  width: 72px;
+  height: 88px;
+  border: 2px dashed var(--color-stamp);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+/* .postcard__stamp-text {
+  font-family: var(--font-hand);
+  font-size: 0.8rem;
+  color: var(--color-stamp);
+  letter-spacing: 0.1em;
+} */
+
+.postcard__fields-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Divider */
+.postcard__divider {
+  width: 1.5px;
+  background: var(--color-postcard-line);
+  align-self: stretch;
+}
+
+/* Right side */
+.postcard__right {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fields */
+.postcard__field label {
+  display: block;
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: var(--color-text-light);
+}
+
+.postcard__field input,
+.postcard__field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--color-postcard-line);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  padding: 0.4rem 0;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.postcard__field input:focus,
+.postcard__field textarea:focus {
+  border-color: var(--color-text);
+}
+
+.postcard__field textarea {
+  border-bottom: none;
+  line-height: 1.75;
+  /* Lines matching the background */
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 27px,
+      var(--color-postcard-line) 27px,
+      var(--color-postcard-line) 28px);
+  background-position: 0 4px;
+  line-height: 28px;
+  padding-top: 4px;
+}
+
+.postcard__field--message {
+  flex: 1;
+}
+
+.postcard__send {
+  align-self: flex-end;
+  margin-top: 1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: none;
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  padding: 0.5rem 1.8rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.postcard__send:hover {
+  opacity: 0.8;
+}
+
+/* Confirmation */
+.postcard-confirmation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.postcard-confirmation__text {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+/* Decorative postcard lines (right side) */
+.postcard__lines {
+  display: none;
+  /* hidden — using CSS background lines instead */
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 1.2rem;
+  }
+
+  .nav__name {
+    font-size: 1.3rem;
+  }
+
+  .nav__links {
+    gap: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Home: stack sidebar above preview */
+  .home {
+    flex-direction: column;
+  }
+
+  .works-list {
+    width: 100%;
+    min-width: unset;
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .works-preview {
+    padding: 1.5rem;
+  }
+
+  /* Postcard: stack vertically */
+  .postcard {
+    padding: 1.5rem;
+    max-width: 95vw;
+  }
+
+  .postcard__inner {
+    flex-direction: column;
+  }
+
+  .postcard__divider {
+    width: 100%;
+    height: 1.5px;
+  }
+
+  .postcard__stamp {
+    align-self: flex-start;
+  }
+
+  .page__content {
+    padding: 0 1.2rem;
+  }
+
+  .cv__entry {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cv__year {
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav__links {
+    gap: 0.8rem;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   INDIVIDUAL WORK PAGE
+   ============================================ */
+.work-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 3rem) 2.5rem 5rem;
+}
+
+.work-page__title {
+  font-family: var(--font-hand);
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.work-page__description {
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.work-page__description p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.work-page__meta {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.work-page__meta p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Photos container */
+.work-page__photos {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Single image — auto width, centered */
+.work-page__image {
+  text-align: center;
+}
+
+.work-page__image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Full width horizontal image */
+.work-page__image--full img {
+  width: 80%;
+}
+
+/* Portrait / vertical image — constrained width */
+.work-page__image--portrait {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.work-page__image--portrait img {
+  width: 100%;
+}
+
+/* Series — images side by side */
+.work-page__series {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.work-page__series figure {
+  flex: 1;
+  min-width: 0;
+}
+
+.work-page__series img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Captions */
+.work-page__image figcaption,
+.work-page__series figcaption {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Back link */
+.work-page__back {
+  display: inline-block;
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.work-page__back:hover {
+  opacity: 1;
+}
+
+/* Responsive work page */
+@media (max-width: 768px) {
+  .work-page {
+    padding: calc(var(--nav-height) + 2rem) 1.2rem 3rem;
+  }
+
+  .work-page__title {
+    font-size: 2rem;
+  }
+
+  .work-page__series {
+    flex-direction: column;
+  }
+
+  .work-page__image--portrait {
+    max-width: 100%;
+  }
+}

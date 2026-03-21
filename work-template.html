@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work — Elias Kuulmann</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav__name">Elias Kuulmann</a>
+        <div class="nav__links">
+            <a href="about.html">About</a>
+            <a href="cv.html">CV</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="work-page">
+
+        <h1 class="work-page__title">Work </h1>
+
+        <div class="work-page__description">
+            <p>
+                Töö kirjeldus, blablabla lorem ipsum pikk ladina keelne tekstigene et täita seda ala. Kirjutan veidi
+                veel et tuleks kaks rida ja oleks veel paremini aru saada mis siin olema peaks.
+            </p>
+        </div>
+
+        <div class="work-page__meta">
+            <p> "Tehnika, 120 × 80 cm, 2024"</p>
+        </div>
+
+        <!-- PHOTOS SECTION -->
+        <!-- Use different layout classes depending on the image:
+         
+         work-page__image              = single image (horizontal or vertical, auto-sized)
+         work-page__image--full        = full width horizontal image
+         work-page__image--portrait    = centered vertical/portrait image
+         work-page__series             = multiple images side by side as a series
+    -->
+
+        <div class="work-page__photos">
+
+            <!-- Single horizontal image -->
+            <figure class="work-page__image">
+                <img src="images/IMG_0488.jpg" alt="Untitled Series I — Image 1">
+                <figcaption>(lisa tekst KUI vaja)</figcaption>
+            </figure>
+
+            <!-- Single portrait/vertical image -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/IMG_0488.jpg" alt="Untitled Series I — Image 2">
+                <figcaption>(lisa tekst KUI vaja)</figcaption>
+            </figure>
+
+            <!-- Series of images side by side -->
+            <div class="work-page__series">
+                <figure>
+                    <img src="images/IMG_0488.jpg" alt="Series image 1">
+                    <figcaption>pealkiri</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/IMG_0488.jpg" alt="Series image 2">
+                    <figcaption>pealkiri</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/IMG_0488.jpg" alt="Series image 3">
+                    <figcaption>pealkiri</figcaption>
+                </figure>
+            </div>
+
+            <!-- Full width horizontal image -->
+            <figure class="work-page__image work-page__image--full">
+                <img src="images/IMG_0488.jpg" alt="Untitled Series I — Image 4">
+                <figcaption>pealkiri</figcaption>
+            </figure>
+
+        </div>
+
+        <a href="index.html" class="work-page__back">&#8592; Back to works</a>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Elias Kuulmann</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__name">Elias Kuulmann</a>
+    <div class="nav__links">
+      <a href="about.html">About</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <main class="page page--contact">
+
+    <h1 class="postcard-title">Write me!</h1>
+
+    <div class="postcard">
+      <!-- Postcard back texture/feel -->
+      <div class="postcard__inner">
+
+        <!-- LEFT SIDE: stamp + email/topic -->
+        <div class="postcard__left">
+
+          <div class="postcard__stamp">
+            <span class="postcard__stamp-text">STAMP</span>
+          </div>
+
+          <div class="postcard__fields-left">
+            <div class="postcard__field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" required placeholder="hello@example.com">
+            </div>
+            <div class="postcard__field">
+              <label for="topic">Topic</label>
+              <input type="text" id="topic" name="topic" required placeholder="What's this about?">
+            </div>
+          </div>
+        </div>
+
+        <!-- DIVIDER LINE -->
+        <div class="postcard__divider"></div>
+
+        <!-- RIGHT SIDE: message + send -->
+        <div class="postcard__right">
+          <div class="postcard__field postcard__field--message">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="8" required placeholder="Write your message here..."></textarea>
+          </div>
+          <button type="button" class="postcard__send" id="sendBtn">Send &rarr;</button>
+        </div>
+
+      </div>
+
+      <!-- Postcard lines decoration -->
+      <div class="postcard__lines" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="postcard-confirmation" id="confirmation" style="display:none;">
+      <p class="postcard-confirmation__text">Your message has been sent. Thank you!</p>
+    </div>
+
+  </main>
+
+  <script>
+    // Simple form handling — replace action URL with Formspree or Netlify Forms endpoint
+    document.getElementById('sendBtn').addEventListener('click', function () {
+      const email = document.getElementById('email');
+      const topic = document.getElementById('topic');
+      const message = document.getElementById('message');
+
+      if (!email.value || !topic.value || !message.value) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // TODO: Replace with actual form submission
+      // Example with Formspree:
+      // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email: email.value, topic: topic.value, message: message.value })
+      // }).then(() => { ... });
+
+      // For now, just show confirmation
+      document.querySelector('.postcard').style.display = 'none';
+      document.querySelector('.postcard-title').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'flex';
+    });
+  </script>
+
+</body>
+
+</html>
