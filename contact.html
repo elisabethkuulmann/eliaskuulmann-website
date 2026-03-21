@@ -10,6 +10,320 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
     rel="stylesheet">
+  <style>
+    /* ============================================
+       CONTACT PAGE — PIGEON POSTCARD
+       ============================================ */
+
+    .contact-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-height) + 2rem) 1.5rem 2rem;
+    }
+
+    /* --- POSTCARD WRAPPER --- */
+    .pigeon-postcard {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      aspect-ratio: 1.55 / 1;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Background image */
+    .pigeon-postcard__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* CSS fallback background if image fails */
+    .pigeon-postcard--fallback {
+      background: #e8e04a;
+      background-image:
+        radial-gradient(ellipse at 30% 40%, rgba(0, 0, 0, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(0, 0, 0, 0.04) 0%, transparent 50%);
+    }
+
+    /* --- FORM OVERLAY --- */
+    .pigeon-postcard__form {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 7% 6% 6% 6%;
+    }
+
+    /* Top row: fields left, send button right */
+    .pigeon-postcard__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6%;
+    }
+
+    .pigeon-postcard__fields {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 45%;
+    }
+
+    /* Individual field row */
+    .pigeon-postcard__field {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .pigeon-postcard__label {
+      font-family: 'Times New Roman', 'Georgia', serif;
+      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+      color: #1a1a1a;
+      white-space: nowrap;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .pigeon-postcard__static-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+      color: #1a1a1a;
+    }
+
+    .pigeon-postcard__input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid #1a1a1a;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+      color: #1a1a1a;
+      padding: 0.2rem 0;
+      outline: none;
+      min-width: 0;
+    }
+
+    .pigeon-postcard__input::placeholder {
+      color: rgba(26, 26, 26, 0.35);
+      font-style: italic;
+    }
+
+    .pigeon-postcard__input:focus {
+      border-bottom-color: #000;
+      border-bottom-width: 2px;
+    }
+
+    /* Send button area (top right, where pigeon is in the bg image) */
+    .pigeon-postcard__send-area {
+      position: relative;
+      width: 180px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
+    .pigeon-postcard__send-btn {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .pigeon-postcard__send-btn:hover~.pigeon-postcard__send-hover,
+    .pigeon-postcard__send-btn:focus-visible~.pigeon-postcard__send-hover {
+      opacity: 1;
+    }
+
+    .pigeon-postcard__send-hover {
+      position: absolute;
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .pigeon-postcard__send-hover span {
+      font-family: 'Times New Roman', 'Georgia', serif;
+      font-size: 0.8rem;
+      color: #1a1a1a;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    /* Message area (bottom portion) */
+    .pigeon-postcard__message-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pigeon-postcard__message-label {
+      font-family: 'Times New Roman', 'Georgia', serif;
+      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .pigeon-postcard__textarea {
+      flex: 1;
+      background: transparent;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+      color: #1a1a1a;
+      line-height: 1.8;
+      resize: none;
+      outline: none;
+      padding: 0;
+    }
+
+    .pigeon-postcard__textarea::placeholder {
+      color: rgba(26, 26, 26, 0.3);
+      font-style: italic;
+    }
+
+    /* --- THANK YOU STATE --- */
+    .pigeon-thankyou {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      aspect-ratio: 1.55 / 1;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 12px 40px rgba(0, 0, 0, 0.12);
+      display: none;
+    }
+
+    .pigeon-thankyou--fallback {
+      background: #c4a86e;
+    }
+
+    .pigeon-thankyou__bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CSS-only fallback text if image fails to load */
+    .pigeon-thankyou__text {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pigeon-thankyou--no-image .pigeon-thankyou__text {
+      display: flex;
+    }
+
+    .pigeon-thankyou__text p {
+      font-family: 'Times New Roman', 'Georgia', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: #fff;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* --- SENDING STATE --- */
+    .pigeon-postcard--sending {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* --- ERROR MESSAGE --- */
+    .pigeon-error {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(180, 40, 40, 0.9);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 3px;
+      z-index: 10;
+      display: none;
+      white-space: nowrap;
+    }
+
+    .pigeon-error.visible {
+      display: block;
+    }
+
+    /* --- ANIMATION: pigeon fly-away on send --- */
+    @keyframes pigeonFly {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+
+      60% {
+        transform: translate(80px, -120px) scale(0.7);
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translate(200px, -300px) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    .pigeon-postcard--flying {
+      animation: pigeonFly 0.8s ease-in forwards;
+    }
+
+    /* --- MOBILE --- */
+    @media (max-width: 600px) {
+      .contact-page {
+        padding: calc(var(--nav-height) + 1rem) 0.5rem 1rem;
+      }
+
+      .pigeon-postcard,
+      .pigeon-thankyou {
+        aspect-ratio: auto;
+        min-height: 480px;
+      }
+
+      .pigeon-postcard__form {
+        padding: 6% 5% 5% 5%;
+      }
+
+      .pigeon-postcard__top {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .pigeon-postcard__fields {
+        width: 100%;
+      }
+
+      .pigeon-postcard__send-area {
+        align-self: flex-end;
+        width: 120px;
+        height: 95px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -23,83 +337,137 @@
     </div>
   </nav>
 
-  <main class="page page--contact">
+  <main class="contact-page">
 
-    <h1 class="postcard-title">Write me!</h1>
+    <!-- POSTCARD FORM -->
+    <div class="pigeon-postcard" id="postcard">
+      <img src="images/Postkaart_2.jpg" alt="" class="pigeon-postcard__bg"
+        onerror="this.parentElement.classList.add('pigeon-postcard--fallback'); this.style.display='none';">
 
-    <div class="postcard">
-      <!-- Postcard back texture/feel -->
-      <div class="postcard__inner">
+      <div class="pigeon-postcard__form" id="postcardForm">
 
-        <!-- LEFT SIDE: stamp + email/topic -->
-        <div class="postcard__left">
-
-          <div class="postcard__stamp">
-            <span class="postcard__stamp-text">STAMP</span>
+        <div class="pigeon-postcard__top">
+          <!-- To / From fields -->
+          <div class="pigeon-postcard__fields">
+            <div class="pigeon-postcard__field">
+              <span class="pigeon-postcard__label">To :</span>
+              <span class="pigeon-postcard__static-text">EliAs</span>
+            </div>
+            <div class="pigeon-postcard__field">
+              <label class="pigeon-postcard__label" for="pc-from">From :</label>
+              <input type="email" id="pc-from" name="email" class="pigeon-postcard__input" required
+                placeholder="your@email.com" autocomplete="email">
+            </div>
           </div>
 
-          <div class="postcard__fields-left">
-            <div class="postcard__field">
-              <label for="email">Your email</label>
-              <input type="email" id="email" name="email" required placeholder="hello@example.com">
-            </div>
-            <div class="postcard__field">
-              <label for="topic">Topic</label>
-              <input type="text" id="topic" name="topic" required placeholder="What's this about?">
+          <!-- Pigeon send button (positioned over pigeon in bg image) -->
+          <div class="pigeon-postcard__send-area">
+            <button type="button" class="pigeon-postcard__send-btn" id="sendBtn" aria-label="Send message">
+            </button>
+            <div class="pigeon-postcard__send-hover">
+              <span>click to send</span>
             </div>
           </div>
         </div>
 
-        <!-- DIVIDER LINE -->
-        <div class="postcard__divider"></div>
-
-        <!-- RIGHT SIDE: message + send -->
-        <div class="postcard__right">
-          <div class="postcard__field postcard__field--message">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="8" required placeholder="Write your message here..."></textarea>
-          </div>
-          <button type="button" class="postcard__send" id="sendBtn">Send &rarr;</button>
+        <!-- Message -->
+        <div class="pigeon-postcard__message-area">
+          <label class="pigeon-postcard__message-label" for="pc-message">Your message here :</label>
+          <textarea id="pc-message" name="message" class="pigeon-postcard__textarea" required
+            placeholder="Write something..."></textarea>
         </div>
 
-      </div>
-
-      <!-- Postcard lines decoration -->
-      <div class="postcard__lines" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
+        <!-- Error toast -->
+        <div class="pigeon-error" id="errorMsg">Please fill in all fields.</div>
       </div>
     </div>
 
-    <div class="postcard-confirmation" id="confirmation" style="display:none;">
-      <p class="postcard-confirmation__text">Your message has been sent. Thank you!</p>
+    <!-- THANK YOU STATE -->
+    <div class="pigeon-thankyou" id="thankyou">
+      <img src="images/Thank_you.jpg" alt="Thank you, the pigeon has delivered your message!"
+        class="pigeon-thankyou__bg"
+        onerror="this.parentElement.classList.add('pigeon-thankyou--no-image', 'pigeon-thankyou--fallback'); this.style.display='none';">
+      <div class="pigeon-thankyou__text">
+        <p>Thank you,<br><br>the pigeon has delivered<br>your message!</p>
+      </div>
     </div>
 
   </main>
 
   <script>
-    // Simple form handling — replace action URL with Formspree or Netlify Forms endpoint
-    document.getElementById('sendBtn').addEventListener('click', function () {
-      const email = document.getElementById('email');
-      const topic = document.getElementById('topic');
-      const message = document.getElementById('message');
+    const postcard = document.getElementById('postcard');
+    const thankyou = document.getElementById('thankyou');
+    const sendBtn = document.getElementById('sendBtn');
+    const emailInput = document.getElementById('pc-from');
+    const messageInput = document.getElementById('pc-message');
+    const errorMsg = document.getElementById('errorMsg');
 
-      if (!email.value || !topic.value || !message.value) {
-        alert('Please fill in all fields.');
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.add('visible');
+      setTimeout(() => errorMsg.classList.remove('visible'), 3000);
+    }
+
+    sendBtn.addEventListener('click', async function () {
+      // Validate
+      if (!emailInput.value.trim() || !messageInput.value.trim()) {
+        showError('Please fill in all fields.');
         return;
       }
 
-      // TODO: Replace with actual form submission
-      // Example with Formspree:
-      // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email: email.value, topic: topic.value, message: message.value })
-      // }).then(() => { ... });
+      if (!emailInput.validity.valid) {
+        showError('Please enter a valid email.');
+        return;
+      }
 
-      // For now, just show confirmation
-      document.querySelector('.postcard').style.display = 'none';
-      document.querySelector('.postcard-title').style.display = 'none';
-      document.getElementById('confirmation').style.display = 'flex';
+      // Sending state
+      postcard.classList.add('pigeon-postcard--sending');
+
+      try {
+        // TODO: Replace YOUR_FORM_ID with your actual Formspree form ID
+        // 1. Go to https://formspree.io and sign up (free)
+        // 2. Create a new form
+        // 3. Copy the form ID (looks like: xrgvalbb)
+        // 4. Replace YOUR_FORM_ID below
+
+        const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailInput.value.trim(),
+            message: messageInput.value.trim()
+          })
+        });
+
+        if (response.ok) {
+          transitionToThankYou();
+        } else {
+          throw new Error('Send failed');
+        }
+      } catch (err) {
+        postcard.classList.remove('pigeon-postcard--sending');
+
+        // TEMPORARY: Show thank you anyway while Formspree isn't set up
+        // Remove this catch block content once you have a real Formspree ID
+        transitionToThankYou();
+      }
+    });
+
+    function transitionToThankYou() {
+      // Fly-away animation, then swap
+      postcard.classList.add('pigeon-postcard--flying');
+      setTimeout(() => {
+        postcard.style.display = 'none';
+        thankyou.style.display = 'block';
+      }, 750);
+    }
+
+    // Enter in email focuses message
+    emailInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        messageInput.focus();
+      }
     });
   </script>
 
