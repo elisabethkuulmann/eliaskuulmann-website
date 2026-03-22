@@ -57,6 +57,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
@@ -803,14 +804,14 @@ ul {
     max-width: 100% !important;
     width: 100% !important;
     margin-right: 0 !important;
-    font-size: 2rem !important;
+    font-size: 0.95rem !important;
   }
 
   /* Egg — not fixed on mobile */
   .kooruv-beebi {
     position: static !important;
     display: block;
-    width: 700px !important;
+    width: 100px !important;
     margin: 0 auto 2rem !important;
   }
 }
