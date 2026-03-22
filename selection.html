@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        .work-page__image--portrait {
+            max-width: 450px !important;
+        }
+
+        .work-page__image--full img {
+            width: 50% !important;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A selection of photographs — Elias Kuulmann</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav__name">Elias Kuulmann</a>
+        <div class="nav__links">
+            <!-- <a href="about.html">About</a> -->
+            <a href="cv.html">CV</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="work-page">
+
+        <h1 class="work-page__title">A selection of photographs made between</h1>
+        <p class="work-page__year">2024-2026</p>
+
+        <!-- <div class="work-page__meta">
+            <p>Made between 2024-2026</p>
+        </div> -->
+
+
+        <div class="work-page__photos">
+
+            <!-- Handwritten text page — portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/_DSC9638.jpg" alt="A selection of photographs - Stair">
+            </figure>
+
+            <!-- Pillow portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Courtland_for_cyanotype.jpg" alt="A selection of photographs - Courtland cyanotype">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Cyanotype collage.png" alt="A selection of photographs - Cyanotype collage">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Kivi varjuga.jpg" alt="A selection of photographs - Rock with shadow">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/kivid.jpg" alt="A selection of photographs - Rocks">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Liisa lizard.jpg" alt="A selection of photographs - Liisa with lizard">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/vici vannitoas.jpg" alt="A selection of photographs - Vici in the bathroom">
+            </figure>
+
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Vileda.jpg" alt="A selection of photographs - Vileda">
+            </figure>
+
+
+        </div>
+
+        <a href="index.html" class="work-page__back">&#8592; Back</a>
+
+    </main>
+
+    <script>
+        const images = Array.from(document.querySelectorAll('.work-page__photos img'));
+        let current = 0;
+        const lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.innerHTML = `
+            <button class="lightbox__close">✕</button>
+            <button class="lightbox__prev">&#8592;</button>
+            <div class="lightbox__content"><img class="lightbox__img" src=""></div>
+            <button class="lightbox__next">&#8594;</button>
+        `;
+        document.body.appendChild(lb);
+        const lbImg = lb.querySelector('.lightbox__img');
+        function open(i) { current = i; lbImg.src = images[current].src; lb.classList.add('open'); }
+        function close() { lb.classList.remove('open'); }
+        function prev() { current = (current - 1 + images.length) % images.length; lbImg.src = images[current].src; }
+        function next() { current = (current + 1) % images.length; lbImg.src = images[current].src; }
+        images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+        lb.querySelector('.lightbox__close').addEventListener('click', close);
+        lb.querySelector('.lightbox__prev').addEventListener('click', prev);
+        lb.querySelector('.lightbox__next').addEventListener('click', next);
+        lb.addEventListener('click', e => { if (e.target === lb) close(); });
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'Escape') close();
+        });
+    </script>
+
+</body>
+
+</html>

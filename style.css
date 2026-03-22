@@ -12,13 +12,19 @@
 
 /* --- VARIABLES --- */
 :root {
-  --font-hand: 'EliasHand';
+  --font-hand-numbers: 'Caveat', cursive;
+  --font-hand: 'EliasHand', 'Caveat', cursive;
   --font-body: 'DM Sans', sans-serif;
+
+  --works-heading-margin-top: 2rem;
+  /* space above Works / Video Works headings */
+  --works-heading-margin-bottom: 0.6rem;
+  /* space below heading before first item */
 
   /* FONT SIZES — edit these to change sizes */
   --size-nav-name: 4rem;
   --size-nav-links: 4rem;
-  --size-works-heading: 3rem;
+  --size-works-heading: 2.8rem;
   --size-work-link: 2rem;
 
   --color-bg: #ffffff;
@@ -152,7 +158,8 @@ ul {
   font-family: var(--font-hand);
   font-size: var(--size-works-heading);
   font-weight: 600;
-  margin-bottom: 0.6rem;
+  margin-top: 1rem;
+  margin-bottom: -3rem;
   padding-bottom: 0.3rem;
   display: inline-block;
 }
@@ -162,10 +169,11 @@ ul {
 }
 
 .works-list__items li {
-  margin-bottom: var(--works-gap);
+  margin-bottom: 0rem;
 }
 
 .work-link {
+  line-height: 1.30;
   font-family: var(--font-hand);
   font-size: var(--size-work-link);
   cursor: pointer;
@@ -654,6 +662,16 @@ ul {
   font-weight: 700;
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.work-page__year {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: -2.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-text);
 }
 
 .work-page__description {

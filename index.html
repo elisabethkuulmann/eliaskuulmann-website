@@ -10,6 +10,41 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
     rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    .home-right {
+      flex: 1;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding-top: 6rem;
+
+    }
+
+    .home-bio {
+      max-width: 700px;
+      margin-right: 10rem;
+      font-family: 'EliasHand', 'Caveat';
+      text-transform: uppercase;
+      /* font-family: Helvetica, Arial, sans-serif; */
+      font-size: 2rem;
+      line-height: 2rem;
+      color: var(--color-text);
+    }
+
+    .kooruv-beebi {
+      position: fixed;
+      bottom: -7rem;
+      right: -4rem;
+      width: 600px;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,25 +52,45 @@
   <nav class="nav">
     <a href="index.html" class="nav__name">Elias Kuulmann</a>
     <div class="nav__links">
-      <a href="about.html">About</a>
       <a href="cv.html">CV</a>
       <a href="contact.html">Contact</a>
     </div>
   </nav>
 
   <main class="home">
+
     <aside class="works-list">
       <h2 class="works-list__heading">Works</h2>
       <ul class="works-list__items">
-        <li><a href="work-1.html" class="work-link">FINDING COMFORT IN THE UNCOMFORTABLE </a></li>
+        <a href="finding-comfort.html" class="work-link">Finding Comfort in the Uncomfortable</a>
+        <li><a href="conversation-wall.html" class="work-link">Conversation With a Stranger's Wall</a></li>
+        <li><a href="smell-ya-later.html" class="work-link">Smell Ya Later</a></li>
+        <li><a href="selection.html" class="work-link">A selection of photographs</a></li>
       </ul>
 
       <h2 class="works-list__heading">Video Works</h2>
       <ul class="works-list__items">
-        <li><a href="video-1.html" class="work-link">Video Work 1</a></li>
+        <a href="bainbridge.html" class="work-link"><span style="font-size: 1.4rem;">40</span> Bainbridge <span
+            style="font-size: 1.4rem;">#3</span></a>
+        <li><a href="haiku-333.html" class="work-link">HAIKU No. <span style="font-size: 1.4rem;">333</span></a></li>
+        <li><a href="new-zealand.html" class="work-link">A Day In New Zealand</a></li>
       </ul>
     </aside>
+
+    <div class="home-right">
+      <p class="home-bio">Elias <span style="font-family: 'Caveat', cursive; font-size: 1.25rem;">( </span> b. <span
+          style="font-family: 'Caveat', cursive; font-size: 1.25rem;"> 2002)</span> is a
+        visual artist based in Tallinn, currently studying at the Estonian Academy of Arts. Working with photography,
+        video, and film, his practice moves between still and moving images exploring how sequencing and rhythm can
+        produce or eliminate movement. He is drawn to abstract images that resist immediate recognition, creating space
+        for personal and open narratives. His work draws from domestic environments, routine, and moments in transit. He
+        has also studied at the Academy of Fine Arts, Uniarts Helsinki and Rhode Island School of Design.</p>
+
+    </div>
+
   </main>
+
+  <img src="images/Kooruv_beebi.png" alt="" class="kooruv-beebi">
 
 </body>
 

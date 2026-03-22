@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation With a Stranger's Wall — Elias Kuulmann</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav__name">Elias Kuulmann</a>
+        <div class="nav__links">
+            <!-- <a href="about.html">About</a> -->
+            <a href="cv.html">CV</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="work-page">
+
+        <h1 class="work-page__title">CONVERSATION WITH A STRANGER'S WALL</h1>
+        <p class="work-page__year">2022-</p>
+
+        <div class="work-page__meta">
+            <p>Zine, 30×40 cm &nbsp;·&nbsp; 2022–</p>
+            <p style="margin-top: 0.3rem;">Supervisor: Tuukka Kaila</p>
+        </div>
+
+        <div class="work-page__description">
+            <p>Omegle was a free, web based online chat service, that allowed users to socialise with others. The
+                service randomly paired users in one-on-one chat sessions, where they could chat anonymously through
+                texting or video.</p>
+            <p>My interest in spaces has led me to this ongoing project. I capture and collect the ceilings, corners,
+                fans, lamps or elbows that first appear on the screen in every randomly generated video chat.</p>
+        </div>
+
+        <div class="work-page__photos">
+
+            <figure class="work-page__image work-page__image--full">
+                <img src="images/Omegle_grid-1.png" alt="Conversation With a Stranger's Wall — grid 1">
+            </figure>
+
+            <figure class="work-page__image work-page__image--full">
+                <img src="images/Omegle_grid-2.png" alt="Conversation With a Stranger's Wall — grid 2">
+            </figure>
+
+        </div>
+
+        <a href="index.html" class="work-page__back">&#8592; Back</a>
+
+    </main>
+
+    <script>
+        const images = Array.from(document.querySelectorAll('.work-page__photos img'));
+        let current = 0;
+        const lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.innerHTML = `
+            <button class="lightbox__close">✕</button>
+            <button class="lightbox__prev">&#8592;</button>
+            <div class="lightbox__content"><img class="lightbox__img" src=""></div>
+            <button class="lightbox__next">&#8594;</button>
+        `;
+        document.body.appendChild(lb);
+        const lbImg = lb.querySelector('.lightbox__img');
+        function open(i) { current = i; lbImg.src = images[current].src; lb.classList.add('open'); }
+        function close() { lb.classList.remove('open'); }
+        function prev() { current = (current - 1 + images.length) % images.length; lbImg.src = images[current].src; }
+        function next() { current = (current + 1) % images.length; lbImg.src = images[current].src; }
+        images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+        lb.querySelector('.lightbox__close').addEventListener('click', close);
+        lb.querySelector('.lightbox__prev').addEventListener('click', prev);
+        lb.querySelector('.lightbox__next').addEventListener('click', next);
+        lb.addEventListener('click', e => { if (e.target === lb) close(); });
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'Escape') close();
+        });
+    </script>
+
+</body>
+
+</html>

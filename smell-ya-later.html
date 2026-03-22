@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        .work-page__image--portrait {
+            max-width: 450px !important;
+        }
+
+        .work-page__image--full img {
+            width: 50% !important;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smell Ya Later — Elias Kuulmann</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav__name">Elias Kuulmann</a>
+        <div class="nav__links">
+            <!-- <a href="about.html">About</a> -->
+            <a href="cv.html">CV</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="work-page">
+
+        <h1 class="work-page__title">Smell Ya Later</h1>
+        <p class="work-page__year">2024</p>
+
+        <!-- <div class="work-page__meta">
+            <p>2024</p>
+        </div> -->
+
+        <div class="work-page__description">
+            <p>In English, a playful way to say goodbye is "smell you later." Proximity shapes our memories — when we
+                love someone, we try to be as close to them as possible. Their image distorts in our memory, often tied
+                to a lingering scent. At the next encounter, that scent brings comfort, recognition, and longing.</p>
+            <p>Smell is uniquely linked to memory, taking a direct path to the brain's emotional centres. A wrinkled bed
+                sheet holds the trace of someone gone, a child hugs their mother's pillow for security, a T-shirt from
+                the weekend carries the scent of shared moments — sex, breakfast, a cigarette, a goodbye that may never
+                lead to another hello. How to keep them and how long do these traces last before fading into memory?</p>
+        </div>
+
+        <div class="work-page__photos">
+
+            <!-- Handwritten text page — portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Starter-KIT_lk_1.png" alt="Smell Ya Later — handwritten text">
+            </figure>
+
+            <!-- Pillow portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Starter-KIT_lk_2.jpeg" alt="Smell Ya Later — pillow">
+            </figure>
+
+            <!-- Spread / horizontal -->
+            <figure class="work-page__image work-page__image--full">
+                <img src="images/Starter-KIT_lk_3-4.jpeg" alt="Smell Ya Later — spread">
+            </figure>
+
+            <!-- T-shirt portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Starter-KIT_lk_5.jpg" alt="Smell Ya Later — t-shirt">
+            </figure>
+
+            <!-- Bedsheet with messages portrait -->
+            <figure class="work-page__image work-page__image--portrait">
+                <img src="images/Starter-KIT_lk_6.jpg" alt="Smell Ya Later — bedsheet">
+            </figure>
+
+        </div>
+
+        <a href="index.html" class="work-page__back">&#8592; Back</a>
+
+    </main>
+
+    <script>
+        const images = Array.from(document.querySelectorAll('.work-page__photos img'));
+        let current = 0;
+        const lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.innerHTML = `
+            <button class="lightbox__close">✕</button>
+            <button class="lightbox__prev">&#8592;</button>
+            <div class="lightbox__content"><img class="lightbox__img" src=""></div>
+            <button class="lightbox__next">&#8594;</button>
+        `;
+        document.body.appendChild(lb);
+        const lbImg = lb.querySelector('.lightbox__img');
+        function open(i) { current = i; lbImg.src = images[current].src; lb.classList.add('open'); }
+        function close() { lb.classList.remove('open'); }
+        function prev() { current = (current - 1 + images.length) % images.length; lbImg.src = images[current].src; }
+        function next() { current = (current + 1) % images.length; lbImg.src = images[current].src; }
+        images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+        lb.querySelector('.lightbox__close').addEventListener('click', close);
+        lb.querySelector('.lightbox__prev').addEventListener('click', prev);
+        lb.querySelector('.lightbox__next').addEventListener('click', next);
+        lb.addEventListener('click', e => { if (e.target === lb) close(); });
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'Escape') close();
+        });
+    </script>
+
+</body>
+
+</html>
