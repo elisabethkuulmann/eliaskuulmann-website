@@ -779,7 +779,7 @@ ul {
    ============================================ */
 @media (max-width: 480px) {
   .nav__name {
-    font-size: calc(var(--size-nav-name) * 0.45);
+    font-size: calc(var(--size-nav-name) * 0.2);
   }
 
   .nav__links {
@@ -803,14 +803,14 @@ ul {
     max-width: 100% !important;
     width: 100% !important;
     margin-right: 0 !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
   }
 
   /* Egg — not fixed on mobile */
   .kooruv-beebi {
     position: static !important;
     display: block;
-    width: 100px !important;
+    width: 400px !important;
     margin: 0 auto 2rem !important;
   }
 }
