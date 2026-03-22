@@ -16,6 +16,14 @@
   --font-hand: 'EliasHand', 'Caveat', cursive;
   --font-body: 'DM Sans', sans-serif;
 
+  /* MOBILE SIZES */
+  --mobile-nav-scale: 1rem;
+  /* nav text size on mobile (multiplied by desktop size) */
+  --mobile-bio-size: 1.5rem;
+  /* bio text size on mobile */
+  --mobile-egg-size: 500px;
+  /* egg width on mobile */
+
   --works-heading-margin-top: 2rem;
   --works-heading-margin-bottom: 0.6rem;
 
@@ -779,12 +787,11 @@ ul {
    ============================================ */
 @media (max-width: 480px) {
   .nav__name {
-    font-size: calc(var(--size-nav-name) * 0.45);
+    font-size: calc(var(--size-nav-name) * var(--mobile-nav-scale));
   }
 
   .nav__links {
-    gap: 0.8rem;
-    font-size: calc(var(--size-nav-links) * 0.45);
+    font-size: calc(var(--size-nav-links) * var(--mobile-nav-scale));
   }
 
   .works-list {
@@ -800,17 +807,9 @@ ul {
   }
 
   .home-bio {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin-right: 0 !important;
-    font-size: 0.95rem !important;
+    font-size: var(--mobile-bio-size) !important;
   }
 
-  /* Egg — not fixed on mobile */
   .kooruv-beebi {
-    position: static !important;
-    display: block;
-    width: 100px !important;
-    margin: 0 auto 2rem !important;
+    width: var(--mobile-egg-size) !important;
   }
-}
