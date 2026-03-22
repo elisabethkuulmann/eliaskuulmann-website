@@ -811,12 +811,11 @@ ul {
     position: static !important;
     display: block;
     width: 700px !important;
-    margin: 1rem 0 2rem 0 !important;
+    margin-top: 2rem;
   }
 }
 
 .kooruv-beebi {
-  position: fixed;
   bottom: 2rem;
   right: 2rem;
   width: 140px;
