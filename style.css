@@ -709,7 +709,7 @@ ul {
 }
 
 .work-page__image--portrait {
-  max-width: 500px;
+  max-width: 655px;
   margin: 0 auto;
 }
 
@@ -744,9 +744,10 @@ ul {
 }
 
 .work-page__back {
+  text-transform: uppercase;
   display: inline-block;
-  font-family: var(--font-hand);
-  font-size: 1.1rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.0rem;
   color: var(--color-text);
   opacity: 0.5;
   transition: opacity 0.2s;

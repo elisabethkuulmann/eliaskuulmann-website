@@ -91,6 +91,48 @@
 
     </main>
 
+    <script>
+        const images = Array.from(document.querySelectorAll('.work-page__photos img'));
+        let current = 0;
+
+        // Build lightbox
+        const lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.innerHTML = `
+    <button class="lightbox__close">✕</button>
+    <button class="lightbox__prev">&#8592;</button>
+    <div class="lightbox__content">
+      <img class="lightbox__img" src="">
+    </div>
+    <button class="lightbox__next">&#8594;</button>
+  `;
+        document.body.appendChild(lb);
+
+        const lbImg = lb.querySelector('.lightbox__img');
+
+        function open(index) {
+            current = index;
+            lbImg.src = images[current].src;
+            lb.classList.add('open');
+        }
+
+        function close() { lb.classList.remove('open'); }
+        function prev() { current = (current - 1 + images.length) % images.length; lbImg.src = images[current].src; }
+        function next() { current = (current + 1) % images.length; lbImg.src = images[current].src; }
+
+        images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+        lb.querySelector('.lightbox__close').addEventListener('click', close);
+        lb.querySelector('.lightbox__prev').addEventListener('click', prev);
+        lb.querySelector('.lightbox__next').addEventListener('click', next);
+        lb.addEventListener('click', e => { if (e.target === lb) close(); });
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'Escape') close();
+        });
+    </script>
+
 </body>
 
 </html>
