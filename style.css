@@ -606,7 +606,7 @@ ul {
 .work-page__meta p {
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-style: italic;
 }
 
