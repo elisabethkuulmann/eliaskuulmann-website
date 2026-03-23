@@ -4,12 +4,30 @@
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        .work-page__image--portrait {
-            max-width: 450px !important;
+        .work-page__title--small {
+            font-size: 1.5rem !important;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+            margin-left: 5%;
         }
 
-        .work-page__image--full img {
-            width: 50% !important;
+        .work-page__year--small {
+            font-size: 1.5rem !important;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 3rem;
+            margin-left: 5%;
+        }
+
+        /* Bigger images — full container width */
+        .work-page__image--portrait {
+            max-width: 900px !important;
+            width: 90% !important;
+        }
+
+        .work-page__image--portrait img {
+            width: 100% !important;
+            max-width: 100% !important;
         }
     </style>
 
@@ -28,7 +46,6 @@
     <nav class="nav">
         <a href="index.html" class="nav__name">Elias Kuulmann</a>
         <div class="nav__links">
-            <!-- <a href="about.html">About</a> -->
             <a href="cv.html">CV</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -36,22 +53,15 @@
 
     <main class="work-page">
 
-        <h1 class="work-page__title">A selection of photographs made between</h1>
-        <p class="work-page__year">2024-2026</p>
-
-        <!-- <div class="work-page__meta">
-            <p>Made between 2024-2026</p>
-        </div> -->
-
+        <h1 class="work-page__title work-page__title--small">A selection of photographs made between</h1>
+        <p class="work-page__year work-page__year--small">2024–2026</p>
 
         <div class="work-page__photos">
 
-            <!-- Handwritten text page — portrait -->
             <figure class="work-page__image work-page__image--portrait">
                 <img src="images/_DSC9638.jpg" alt="A selection of photographs - Stair">
             </figure>
 
-            <!-- Pillow portrait -->
             <figure class="work-page__image work-page__image--portrait">
                 <img src="images/Courtland_for_cyanotype.jpg" alt="A selection of photographs - Courtland cyanotype">
             </figure>
@@ -79,7 +89,6 @@
             <figure class="work-page__image work-page__image--portrait">
                 <img src="images/Vileda.jpg" alt="A selection of photographs - Vileda">
             </figure>
-
 
         </div>
 

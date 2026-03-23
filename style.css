@@ -16,14 +16,14 @@
   --font-hand: 'EliasHand', 'Caveat', cursive;
   --font-body: 'DM Sans', sans-serif;
 
-  --works-heading-margin-top: 2rem;
+  --works-heading-margin-top: 5rem;
   --works-heading-margin-bottom: 0.6rem;
 
   /* FONT SIZES — edit these to change sizes */
   --size-nav-name: 4rem;
   --size-nav-links: 4rem;
-  --size-works-heading: 2.8rem;
-  --size-work-link: 2rem;
+  --size-works-heading: 1rem;
+  --size-work-link: 1rem;
 
   --color-bg: #ffffff;
   --color-text: #1a1a1a;
@@ -39,7 +39,7 @@
   --nav-padding: 4rem;
   --works-left: 4rem;
   --works-gap: 0.05rem;
-  --works-section-gap: 0.4rem;
+  --works-section-gap: 2rem;
 }
 
 /* --- RESET --- */
@@ -147,7 +147,7 @@ ul {
 }
 
 .works-list__heading {
-  font-family: var(--font-hand);
+  font-family: Helvetica, Arial, sans-serif;
   font-size: var(--size-works-heading);
   font-weight: 600;
   margin-top: 1rem;
@@ -165,8 +165,8 @@ ul {
 }
 
 .work-link {
-  line-height: 1.30;
-  font-family: var(--font-hand);
+  line-height: 2;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: var(--size-work-link);
   cursor: pointer;
   transition: opacity 0.2s;
@@ -400,7 +400,7 @@ ul {
 
 .cv__year {
   min-width: 90px;
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -569,7 +569,7 @@ ul {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.9rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem;
 }
 
@@ -577,15 +577,15 @@ ul {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.9rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-top: -2.5rem;
   margin-bottom: 2rem;
   color: var(--color-text);
 }
 
 .work-page__description {
-  max-width: 750px;
-  margin: 0 auto 5rem;
+  max-width: 100%;
+  margin: 0 0 5rem;
   text-align: justify;
 }
 
@@ -598,9 +598,9 @@ ul {
 }
 
 .work-page__meta {
-  max-width: 640px;
-  margin: 0 auto 3rem;
-  text-align: center;
+  max-width: 100%;
+  margin: 0 0 5rem;
+  text-align: left;
 }
 
 .work-page__meta p {
@@ -629,11 +629,11 @@ ul {
 }
 
 .work-page__image--full img {
-  width: 80%;
+  width: 95%;
 }
 
 .work-page__image--portrait {
-  max-width: 655px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
